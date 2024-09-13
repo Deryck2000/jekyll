@@ -1,27 +1,34 @@
-<header>
-  <div class="flexbox">
-    <div class="center-on-mobiles">
-      <h1>
-        <a href="{{ '/' | relative_url }}" class="logo">
-          <span class="sr-only">Jekyll</span>
-          <img src="{{ 'img/logo-2x.png' | relative_url }}" width="140" height="65" alt="Jekyll Logo">
-        </a>
-      </h1>
+<header id="top">
+    <div class="wrapper">
+        <a href="{{ site.baseurl }}/" class="brand">{{ site.title }}</a>
+        <small>{{site.brief-intro}}</small>
+        <button id="headerMenu" class="menu"><i class="fa fa-bars"></i></button>
+        <nav id="headerNav">
+            <ul>
+                <li>
+                    {% if page.url == '/' %}
+                    <a class="active" href="{{site.baseurl}}/">
+                        {% else %}
+                    <a href="{{site.baseurl}}/">
+                    {% endif %}
+                        <i class="fa fa-home"></i>Home
+                    </a>
+                </li>
+
+                {% for my_page in site.pages %}
+                    {% if my_page.title %}
+                    <li>
+                        {% if my_page.url == page.url %}
+                        <a class="active" href="{{ my_page.url | prepend: site.baseurl }}">
+                            {% else %}
+                        <a href="{{ my_page.url | prepend: site.baseurl }}">
+                        {% endif %}
+                            <i class="fa fa-{{my_page.icon}}"></i>{{ my_page.title }}
+                        </a>
+                    </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </nav>
     </div>
-    <nav class="main-nav hide-on-mobiles">
-      {% include primary-nav-items.html -%}
-    </nav>
-    <div class="search hide-on-mobiles">
-      {% include search/input.html -%}
-    </div>
-    <div class="meta hide-on-mobiles">
-      <ul>
-        <li><a href="{{ site.repository }}/releases/tag/v{{ site.version }}">v{{ site.version }}</a></li>
-        <li><a href="{{ site.repository }}">GitHub</a></li>
-      </ul>
-    </div>
-  </div>
-  <nav class="mobile-nav show-on-mobiles">
-    {% include mobile-nav-items.html -%}
-  </nav>
 </header>

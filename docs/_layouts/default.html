@@ -1,24 +1,18 @@
-{%- include top.html -%}
+<!DOCTYPE html>
+<html>
 
-<body class="wrap">
-  {%- include header.html -%}
+  {% include head.html %}
 
-  {{- content -}}
+  <body>
 
-  {%- include footer.html -%}
-  {%- include anchor_links.html -%}
-  {%- include analytics.html -%}
-  {%- include search/script.html -%}
-  
-  <script>
-  {%- comment -%}
-  // This function is called when the user selects an option from a <select> element.
-  // If the selected option has a valid URL, it changes the window location to that URL.
-  {%- endcomment %}
-  const navigateToUrl = (select) => {
-    const url = select.value;
-    url && (window.location.href = url);
-  };
-  </script>
-</body>
+    {% include header.html %}
+
+        {{ content }}
+
+    {% include footer.html %}
+    {% include backToTop.html %}
+    <script src="{{ " /js/main.js " | prepend: site.baseurl }}" charset="utf-8"></script>
+    <script src="{{ " /js/scroll.min.js " | prepend: site.baseurl }}" charset="utf-8"></script>
+  </body>
+
 </html>

@@ -1,5 +1,4 @@
-_site/
-.idea/
-*.swp
-pkg/
-test/
+_site
+.sass-cache
+.jekyll-metadata
+.vscode
